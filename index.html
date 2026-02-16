@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Multi Timer & Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Simple multi timer and stopwatch (vanilla JS)">
+</head>
+<body>
+  <main class="container">
+    <header class="site-header">
+      <h1 class="app-title">
+          <span class="title-main">Simple Multi Timer, Stopwatch and Pomodoro</span>
+        </h1>
+      <p class="tagline">Manage timers, stopwatches and Pomodoro — fast &amp; beautiful</p>
+    </header>
+
+    <div class="panels">
+      <section class="panel timers-panel">
+        <h2>Timers</h2>
+        <div class="add-timer">
+          <input id="label" placeholder="Timer name (optional)" />
+          <input id="hours" type="number" min="0" value="0" style="width:64px" />
+          <input id="minutes" type="number" min="0" value="0" style="width:64px" />
+          <span class="sep">:</span>
+          <input id="seconds" type="number" min="0" max="59" value="30" style="width:64px" />
+          <button id="addBtn">Add timer</button>
+        </div>
+        <section id="timers" class="timers"></section>
+      </section>
+
+      <section class="panel stopwatches-panel">
+        <h2>Stopwatches</h2>
+        <div class="add-stopwatch">
+          <input id="sw_label" placeholder="Stopwatch name (optional)" />
+          <button id="addSwBtn">Add stopwatch</button>
+        </div>
+        <section id="stopwatches" class="timers"></section>
+      </section>
+    </div>
+
+    <section id="pomodoro" class="panel pomodoro">
+      <h2>Pomodoro</h2>
+      <div class="pomodoro-controls">
+        <div class="pomodoro-display">
+          <div id="pom_mode" class="name">Work</div>
+          <div id="pom_time" class="time">25:00</div>
+        </div>
+        <div class="pom-buttons">
+          <button id="pomStart">Start</button>
+          <button id="pomPause">Pause</button>
+          <button id="pomReset">Reset</button>
+          <button id="pomShort">Short Break</button>
+          <button id="pomLong">Long Break</button>
+        </div>
+        <div id="pomCycles" class="time" style="margin-top:8px">Cycles: 0</div>
+        <div class="pomodoro-settings" style="margin-top:14px;width:100%;max-width:520px;margin-left:auto;margin-right:auto">
+          <div style="display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap">
+            <label style="font-size:13px;color:var(--muted)">Work</label>
+            <input id="pom_work" type="number" min="1" value="25" style="width:72px;padding:8px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:var(--text)" />
+            <label style="font-size:13px;color:var(--muted)">Short</label>
+            <input id="pom_short" type="number" min="1" value="5" style="width:72px;padding:8px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:var(--text)" />
+            <label style="font-size:13px;color:var(--muted)">Long</label>
+            <input id="pom_long" type="number" min="1" value="15" style="width:72px;padding:8px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:var(--text)" />
+            <button id="pomApply" style="padding:8px 12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#042027;font-weight:700">Apply</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sound-settings" id="soundSettings">
+      <h3>Sound</h3>
+      <label for="soundVolume">Volume</label>
+      <input id="soundVolume" type="range" min="0" max="100" value="8" />
+      <label for="soundType">Type</label>
+      <select id="soundType">
+        <option value="sine">Sine</option>
+        <option value="square">Square</option>
+        <option value="sawtooth">Sawtooth</option>
+        <option value="triangle">Triangle</option>
+      </select>
+      <button id="soundTest">Test Sound</button>
+    </aside>
+
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
