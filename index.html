@@ -69,6 +69,13 @@
       </div>
     </section>
 
+    <section class="panel pom-notes-panel">
+      <h2>Notes</h2>
+      <div style="width:100%;max-width:720px;margin:0 auto">
+        <textarea id="pom_notes" placeholder="Write notes for your sessions..." style="width:100%;min-height:120px;padding:12px;border-radius:10px;border:1px solid var(--glass);background:transparent;color:var(--text);resize:vertical"></textarea>
+      </div>
+    </section>
+
     <aside class="sound-settings" id="soundSettings">
       <h3>Sound</h3>
       <label for="soundVolume">Volume</label>
@@ -82,6 +89,13 @@
       </select>
       <button id="soundTest">Test Sound</button>
     </aside>
+    <div class="bottom-controls">
+      <button id="toggleTimersBtn" class="bottom-btn">Hide Timers</button>
+      <button id="toggleSwBtn" class="bottom-btn">Hide Stopwatches</button>
+      <button id="togglePomBtn" class="bottom-btn">Hide Pomodoro</button>
+      <button id="toggleNotesBtn" class="bottom-btn">Hide Notes</button>
+      <button id="soundToggle" class="bottom-btn sound-toggle">Sound</button>
+    </div>
 
   </main>
 

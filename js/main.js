@@ -86,4 +86,58 @@ document.addEventListener('DOMContentLoaded', ()=>{
   initTimers();
   initStopwatches();
   initPomodoro();
+  // Sound panel toggle
+  const soundToggle = document.getElementById('soundToggle');
+  const soundPanel = document.getElementById('soundSettings');
+  if(soundToggle && soundPanel){
+    soundToggle.addEventListener('click', ()=>{
+      soundPanel.classList.toggle('open');
+      if(soundPanel.classList.contains('open')){
+        const vol = document.getElementById('soundVolume'); if(vol) vol.focus();
+      }
+    });
+  }
+
+  // Panel visibility toggles
+  const toggleTimersBtn = document.getElementById('toggleTimersBtn');
+  const toggleSwBtn = document.getElementById('toggleSwBtn');
+  const togglePomBtn = document.getElementById('togglePomBtn');
+  const timersPanel = document.querySelector('.timers-panel');
+  const swPanel = document.querySelector('.stopwatches-panel');
+  const pomPanel = document.getElementById('pomodoro');
+  const toggleNotesBtn = document.getElementById('toggleNotesBtn');
+  const notesPanel = document.querySelector('.pom-notes-panel');
+
+  function bindToggle(btn, panel, name){
+    if(!btn || !panel) return;
+    btn.addEventListener('click', ()=>{
+      const hidden = panel.style.display === 'none';
+      panel.style.display = hidden ? '' : 'none';
+      btn.textContent = hidden ? `Hide ${name}` : `Show ${name}`;
+    });
+  }
+
+  bindToggle(toggleTimersBtn, timersPanel, 'Timers');
+  bindToggle(toggleSwBtn, swPanel, 'Stopwatches');
+  bindToggle(togglePomBtn, pomPanel, 'Pomodoro');
+
+  // Notes button: toggle visibility and smooth-scroll to notes
+  if(toggleNotesBtn && notesPanel){
+    toggleNotesBtn.addEventListener('click', ()=>{
+      const hidden = notesPanel.style.display === 'none';
+      notesPanel.style.display = hidden ? '' : 'none';
+      toggleNotesBtn.textContent = hidden ? 'Hide Notes' : 'Show Notes';
+      if(hidden){
+        notesPanel.scrollIntoView({behavior:'smooth', block:'center'});
+        const ta = document.getElementById('pom_notes'); if(ta) ta.focus();
+      }
+    });
+  }
+
+  // Pomodoro notes persistence
+  const pomNotes = document.getElementById('pom_notes');
+  if(pomNotes){
+    try{ pomNotes.value = localStorage.getItem('pomNotes') || ''; }catch(e){}
+    pomNotes.addEventListener('input', ()=>{ try{ localStorage.setItem('pomNotes', pomNotes.value); }catch(e){} });
+  }
 });
